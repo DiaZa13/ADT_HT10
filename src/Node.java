@@ -24,12 +24,20 @@ public class Node {
 		this.node = node;
 	}
 	
+	
+	/**
+	 * addNodes -> add new nodes to the arrayList
+	 * @param from -> node to add
+	 */
 	public void addNodes(String from) {
 		if(!nodes.contains(from))
 			nodes.add(from);
-		
 	}
 	
+	/**
+	 * actualNodes -> returns the arrayList with the nodes
+	 * @return
+	 */
 	public ArrayList<String> actualNodes(){
 		return nodes;
 	}

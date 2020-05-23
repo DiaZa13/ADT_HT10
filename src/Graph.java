@@ -11,12 +11,18 @@ public class Graph {
 	private String paths [][];
 	private String auxPaths [][];
 	
+	/**
+	 * Constructor
+	 */
 	public Graph() {
 		this.nodes = new Node();
 		this.graphAdy = new long [5][5];
 		
 	}
 	
+	/**
+	 * GraphS -> fill the initial adjacent matrix
+	 */
 	public void GraphS() {
 		int n = nodes.actualNodes().size();
 		this.graphAdy = new long [n][n];
@@ -30,6 +36,10 @@ public class Graph {
 		}
 	}
 	
+	/**
+	 * Prueba -> returns the D matrix with the shortest path between the cities
+	 * @return msg
+	 */
 	public String prueba(){
 		String msg = "";
 		for(int i = 0; i < graphAdy.length; i++) {
@@ -40,15 +50,30 @@ public class Graph {
 		}
 		return msg;
 	}
+	
+	/**
+	 * cities -> returns the arrayList with all the cities in the document
+	 * @return
+	 */
 	public ArrayList<String> cities() {
 		return nodes.actualNodes();
 	}
 	
-	
+	/**
+	 * addNode -> adds new city to the list of cities
+	 * to be able to do the mapping with the adjacent matrix
+	 * @param from
+	 */
 	public void addNode(String from) {
 		nodes.addNodes(from);
 	}
 	
+	/**
+	 * addRelationship -> adds new route between two cities
+	 * @param from  -> origin city
+	 * @param to -> destination city
+	 * @param distance -> distance between the cities
+	 */
 	public void addRelationship(String from, String to, int distance) {
 		int a = 0;
 		int b = 0;
@@ -64,9 +89,7 @@ public class Graph {
 	
 	
 	/**
-	 * floyAlgotithm -> calculates the shortest path between nodes
-	 * 
-	 * @return
+	 * floyAlgotithm -> calculates the shortest path between the cities
 	 */
 	public void floydAlgorithm() {
 		
@@ -106,7 +129,14 @@ public class Graph {
 		}
 	}
 	
-	
+	/**
+	 * tRoads -> save all the traveled cities to find the shortest path 
+	 * @param i
+	 * @param k
+	 * @param auxPaths
+	 * @param roads
+	 * @return roads 
+	 */
 	public String tRoads(int i, int k, String [][] auxPaths, String roads) {
 		if(auxPaths[i][k].equals("")) {
 			return " ";
@@ -116,7 +146,12 @@ public class Graph {
 
 	}
 	
-	
+	/**
+	 * getRelationship -> obtains the shortest path between two cities
+	 * @param from
+	 * @param to
+	 * @return auxPath
+	 */
 	public String getRelationship(String from, String to) {
 		String auxPath = "";
 		int a = 0;
@@ -153,6 +188,10 @@ public class Graph {
 		return "Entre las ciudades ingresadas aun no existe un recorrido definido";
 	}
 	
+	/**
+	 * graphCenter -> calculates the center of the graph
+	 * @return msg
+	 */
 	public String graphCenter(){
 		ArrayList<Long> maximum = new ArrayList<Long>();
 		String msg = "";
@@ -174,8 +213,9 @@ public class Graph {
 		return msg;
 	}
 	
-	
-	
+	/**
+	 * read -> read the file with the roads between cities
+	 */
 	public void read() {
 		FileReader fr = null;
 		BufferedReader br = null;
