@@ -18,6 +18,8 @@ public class Main {
 		
 		graph.read();
 		graph.GraphS();
+		
+	
 
 		
 //---------------------Read the text with the nodes and edges
@@ -49,6 +51,7 @@ public class Main {
 		}	
 //---------------------Menu
 		graph.floydAlgorithm();
+		//System.out.println(graph.prueba());
 		do {
 			System.out.println("----------------------- HT10 GRAFOS -----------------------");
 			System.out.println("1. Buscar ruta mas corta entre dos ciudades");
@@ -71,14 +74,14 @@ public class Main {
 				fromCity = read.nextLine();
 				System.out.print(">>Ingrese ciudad de destino: ");
 				toCity = read.nextLine();
-				if(graph.cities().contains(fromCity) && graph.cities().contains(toCity)) {
+				if(graph.cities().contains(fromCity.toUpperCase().trim()) && graph.cities().contains(toCity.toUpperCase().trim())) {
 					System.out.println(graph.getRelationship(fromCity.toUpperCase().trim(), toCity.toUpperCase().trim()));
 				}else
 					System.out.println("Las ciudades ingresadas no se encuentran en el documento proporcionado");
 				break;
 		
 			case("2"):
-
+				System.out.println(graph.graphCenter());
 				break;
 		
 			case("3"):
@@ -98,8 +101,8 @@ public class Main {
 					fromCity = read.nextLine();
 					System.out.print(">>Ingrese ciudad de destino: ");
 					toCity = read.nextLine();
-					if(graph.cities().contains(fromCity) && graph.cities().contains(toCity)) {
-						graph.addRelationship(fromCity, toCity, 1000000000);						
+					if(graph.cities().contains(fromCity.toUpperCase().trim()) && graph.cities().contains(toCity.toUpperCase().trim())) {
+						graph.addRelationship(fromCity.toUpperCase().trim(), toCity.toUpperCase().trim(), 1000000000);						
 						graph.floydAlgorithm();
 					}else
 						System.out.println("Las ciudades ingresadas no se encuentran en el documento proporcionado, \npor lo tanto no se puede actualizar la ruta. \nPor favor agregue las ciudades al documento");
@@ -113,8 +116,8 @@ public class Main {
 					System.out.print(">>Ingrese la distancia entre las ciudades: ");
 					distance = read.nextInt();
 					read.nextLine();
-					if(graph.cities().contains(fromCity) && graph.cities().contains(toCity)) {
-						graph.addRelationship(fromCity, toCity, distance);						
+					if(graph.cities().contains(fromCity.toUpperCase().trim()) && graph.cities().contains(toCity.toUpperCase().trim())) {
+						graph.addRelationship(fromCity.toUpperCase().trim(), toCity.toUpperCase().trim(), distance);						
 						graph.floydAlgorithm();
 					}else
 						System.out.println("Las ciudades ingresadas no se encuentran en el documento proporcionado, \npor lo tanto no se puede agregar una nueva ruta entre ellas. \nPor favor agregue las ciudades al documento");

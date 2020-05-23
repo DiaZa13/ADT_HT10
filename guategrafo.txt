@@ -5,3 +5,6 @@ Antigua SantaLucia 20
 ANtigua Mixco 30
 Antigua Mazate 10
 Mazate SantaLucia 5
+Escuintla Antigua 15
+Mazate Antigua 60
+SantaLucia Antigua 20

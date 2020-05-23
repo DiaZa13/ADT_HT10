@@ -22,11 +22,24 @@ public class Graph {
 		this.graphAdy = new long [n][n];
 		for(int a = 0; a < n; a++) {
 			for(int b = 0; b < n; b++) {
-				graphAdy[a][b] = 1000000000;
+				if(a == b)
+					graphAdy[a][b] = 0;
+				else
+					graphAdy[a][b] = 1000000000;
 			}
 		}
 	}
 	
+	public String prueba(){
+		String msg = "";
+		for(int i = 0; i < graphAdy.length; i++) {
+			for(int j = 0; j < D.length; j++) {
+				msg += "[" + D[i][j] + "]-";
+			}
+			msg += "\n";
+		}
+		return msg;
+	}
 	public ArrayList<String> cities() {
 		return nodes.actualNodes();
 	}
@@ -155,7 +168,7 @@ public class Graph {
 		long min = Collections.min(maximum);
 		
 		if(min != 1000000000)
-			msg = "El centro del grafo es: " + min;
+			msg = "El centro del grafo es: " + min + " Km";
 		else
 			msg = "Actualmente el centro del grafo no existe (es infinito)";
 		return msg;
