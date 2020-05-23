@@ -10,26 +10,31 @@ public class Main {
 		FileReader fr = null;
 		BufferedReader br = null;
 		Scanner read = new Scanner(System.in);
-		String line, from, to, fromCity, toCity, menu, mMenu;
-		int distance;
-		String[] words = null;
-		boolean tmenu;		
+		String line, to = " ", from = " ", fromCity, toCity, menu, mMenu;
+		int distance = 0, a = 0;
+		String[] cities = null;
+		boolean tmenu;	
+		Graph graph = new Graph();
+		
+		graph.read();
+		graph.GraphS();
 
+		
 //---------------------Read the text with the nodes and edges
 		try {
-			fr = new FileReader ("Spanish.txt");
+			fr = new FileReader ("guategrafo.txt");
 			br = new BufferedReader(fr);
 			while((line = br.readLine())!=null) {
-				
-					words = line.split("\t");
-					for (int i = 0; i < words.length; i++) {
-						if (i%2 == 0)
-							from = words[i].trim();
-						else if (i%2 == 1)
-							to = words[i].replaceAll("[\\[\\]].*", "").replaceAll(",.*", "").trim();
-					//add the nodes with the edge to the graph
-					
-				}
+					cities = line.split(" ");
+					for (int i = 0; i < cities.length; i++) {
+						if (i%3 == 0)
+							from = cities[i].toUpperCase().trim();
+						else if (i%3 == 1) 
+							to = cities[i].toUpperCase().trim();
+						else if(i%3 == 2)
+							distance = Integer.valueOf(cities[i]); 
+					}
+					graph.addRelationship(from, to, distance);
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -43,6 +48,7 @@ public class Main {
 			}
 		}	
 //---------------------Menu
+		graph.floydAlgorithm();
 		do {
 			System.out.println("----------------------- HT10 GRAFOS -----------------------");
 			System.out.println("1. Buscar ruta mas corta entre dos ciudades");
@@ -61,10 +67,14 @@ public class Main {
 			switch (menu) {
 		
 			case("1"):
-				System.out.println(">>Ingrese ciudad de salida: ");
+				System.out.print(">>Ingrese ciudad de origen: ");
 				fromCity = read.nextLine();
-				System.out.println(">>Ingrese ciudad de destino: ");
+				System.out.print(">>Ingrese ciudad de destino: ");
 				toCity = read.nextLine();
+				if(graph.cities().contains(fromCity) && graph.cities().contains(toCity)) {
+					System.out.println(graph.getRelationship(fromCity.toUpperCase().trim(), toCity.toUpperCase().trim()));
+				}else
+					System.out.println("Las ciudades ingresadas no se encuentran en el documento proporcionado");
 				break;
 		
 			case("2"):
@@ -84,19 +94,30 @@ public class Main {
 				}
 				switch (mMenu) {
 				case "1":
-					System.out.println(">>Ingrese ciudad de salida: ");
+					System.out.print(">>Ingrese ciudad de origen: ");
 					fromCity = read.nextLine();
-					System.out.println(">>Ingrese ciudad de destino: ");
+					System.out.print(">>Ingrese ciudad de destino: ");
 					toCity = read.nextLine();
+					if(graph.cities().contains(fromCity) && graph.cities().contains(toCity)) {
+						graph.addRelationship(fromCity, toCity, 1000000000);						
+						graph.floydAlgorithm();
+					}else
+						System.out.println("Las ciudades ingresadas no se encuentran en el documento proporcionado, \npor lo tanto no se puede actualizar la ruta. \nPor favor agregue las ciudades al documento");
+					
 				break;
 				case "2":
-					System.out.println(">>Ingrese ciudad de salida: ");
+					System.out.print(">>Ingrese ciudad de origen: ");
 					fromCity = read.nextLine();
-					System.out.println(">>Ingrese ciudad de destino: ");
+					System.out.print(">>Ingrese ciudad de destino: ");
 					toCity = read.nextLine();
-					System.out.println(">>Ingrese la distancia entre las ciudades: ");
+					System.out.print(">>Ingrese la distancia entre las ciudades: ");
 					distance = read.nextInt();
 					read.nextLine();
+					if(graph.cities().contains(fromCity) && graph.cities().contains(toCity)) {
+						graph.addRelationship(fromCity, toCity, distance);						
+						graph.floydAlgorithm();
+					}else
+						System.out.println("Las ciudades ingresadas no se encuentran en el documento proporcionado, \npor lo tanto no se puede agregar una nueva ruta entre ellas. \nPor favor agregue las ciudades al documento");
 					
 				break;
 				}
