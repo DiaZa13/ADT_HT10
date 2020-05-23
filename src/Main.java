@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static <K, V> void main(String[] args) {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		FileReader fr = null;
