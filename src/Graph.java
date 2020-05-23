@@ -1,3 +1,8 @@
+/**
+ * @author Diana Zaray Corado Lopez #191025
+ * @since 20/5/2020
+ */
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -90,6 +95,8 @@ public class Graph {
 	
 	/**
 	 * floyAlgotithm -> calculates the shortest path between the cities
+	 * implemented of @author MasterHeHeGar
+	 * @see https://www.youtube.com/watch?v=xK0ShW9G-Ts
 	 */
 	public void floydAlgorithm() {
 		
@@ -131,6 +138,8 @@ public class Graph {
 	
 	/**
 	 * tRoads -> save all the traveled cities to find the shortest path 
+	 * implement of @author MasterHeHeGar
+	 * @see https://www.youtube.com/watch?v=xK0ShW9G-Ts
 	 * @param i
 	 * @param k
 	 * @param auxPaths
