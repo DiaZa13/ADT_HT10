@@ -42,19 +42,13 @@ public class Graph {
 	}
 	
 	/**
-	 * Prueba -> returns the D matrix with the shortest path between the cities
-	 * @return msg
+	 * Prueba -> returns the graphAdy matrix with the shortest path between the cities
+	 * @return long
 	 */
-	public String prueba(){
-		String msg = "";
-		for(int i = 0; i < graphAdy.length; i++) {
-			for(int j = 0; j < D.length; j++) {
-				msg += "[" + D[i][j] + "]-";
-			}
-			msg += "\n";
-		}
-		return msg;
+	public long prueba(){
+		return graphAdy[1][2];
 	}
+
 	
 	/**
 	 * cities -> returns the arrayList with all the cities in the document
@@ -96,7 +90,7 @@ public class Graph {
 	/**
 	 * floyAlgotithm -> calculates the shortest path between the cities
 	 * implemented of @author MasterHeHeGar
-	 * @see https://www.youtube.com/watch?v=xK0ShW9G-Ts
+	 * @see //www.youtube.com/watch?v=xK0ShW9G-Ts
 	 */
 	public void floydAlgorithm() {
 		
@@ -139,7 +133,7 @@ public class Graph {
 	/**
 	 * tRoads -> save all the traveled cities to find the shortest path 
 	 * implement of @author MasterHeHeGar
-	 * @see https://www.youtube.com/watch?v=xK0ShW9G-Ts
+	 * @see //www.youtube.com/watch?v=xK0ShW9G-Ts
 	 * @param i
 	 * @param k
 	 * @param auxPaths
@@ -154,7 +148,23 @@ public class Graph {
 		return roads;
 
 	}
-	
+
+	/**
+	 * Prueba -> returns the D matrix with the shortest path between the cities
+	 * @return long
+	 */
+	public long prueba1(String from, String to){
+		int a = 0;
+		int b = 0;
+		while(!nodes.actualNodes().get(a).equals(from)) {
+			a++;
+		}
+		while(!nodes.actualNodes().get(b).equals(to)) {
+			b++;
+		}
+		return graphAdy[a][b];
+	}
+
 	/**
 	 * getRelationship -> obtains the shortest path between two cities
 	 * @param from
@@ -192,7 +202,7 @@ public class Graph {
 	}
 	
 	if(D[a][b] != 1000000000)
-		return "Para viajar " + auxPath + " \nCon una distancia mínima de recorrido de " + D[a][b] +" Km";	
+		return "Para viajar " + auxPath + " \nCon una distancia mínima de recorrido de " + D[a][b] +" Km";
 	else
 		return "Entre las ciudades ingresadas aun no existe un recorrido definido";
 	}
@@ -214,6 +224,7 @@ public class Graph {
 		}
 		
 		long min = Collections.min(maximum);
+		int min1 = (int) min;
 		
 		if(min != 1000000000)
 			msg = "El centro del grafo es: " + min + " Km";
