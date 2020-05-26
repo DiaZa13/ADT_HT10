@@ -45,8 +45,8 @@ public class Graph {
 	 * Prueba -> returns the graphAdy matrix with the shortest path between the cities
 	 * @return long
 	 */
-	public long prueba(){
-		return graphAdy[1][2];
+	public long[][] prueba(){
+		return graphAdy;
 	}
 
 	
@@ -83,6 +83,7 @@ public class Graph {
 			b++;
 		}
 		graphAdy [a][b] = distance;
+		
 		
 	}
 	

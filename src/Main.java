@@ -10,7 +10,7 @@ public class Main {
 		FileReader fr = null;
 		BufferedReader br = null;
 		Scanner read = new Scanner(System.in);
-		String line, to = " ", from = " ", fromCity, toCity, menu, mMenu;
+		String line, to = " ", from = " ", fromCity, toCity, menu, mMenu, msg = "";
 		int distance = 0, a = 0;
 		String[] cities = null;
 		boolean tmenu;	
@@ -50,14 +50,21 @@ public class Main {
 			}
 		}	
 //---------------------Menu
+		
+		for(int a1 = 0; a1 < graph.prueba().length; a1++) {
+			for(int b = 0; b < graph.prueba().length; b++) {
+				msg += "[" + graph.prueba()[a1][b] + "]";
+			}		
+			msg += "\n";
+		}
 		graph.floydAlgorithm();
-		//System.out.println(graph.prueba());
 		do {
 			System.out.println("----------------------- HT10 GRAFOS -----------------------");
 			System.out.println("1. Buscar ruta mas corta entre dos ciudades");
 			System.out.println("2. Ciudad en el centro del grafo");
 			System.out.println("3. Actualizar el grafo");
-			System.out.println("4. Salir");
+			System.out.println("4. Mostrar matrix de adyacencia");
+			System.out.println("5. Salir");
 			System.out.print(">>Ingrese el numero de la opcion que desee: ");
 			menu = read.nextLine();
 			tmenu = MenuInvalido(menu);
@@ -124,9 +131,13 @@ public class Main {
 					
 				break;
 				}
-			break; 
+			break;
+			case "4":
+				System.out.println("La matriz de adyacencia utilizada es: ");
+				System.out.println(msg);
+			break;
 			}
-		}while(!menu.equals("4"));
+		}while(!menu.equals("5"));
 			
 				
 	}//End of void main
@@ -134,7 +145,7 @@ public class Main {
 //----------------------Defensive programming
 	 public static boolean MenuInvalido(String me) {
 		 boolean incorrecto = false;
-		 if (!me.equals("1") && !me.equals("2") && !me.equals("3") && !me.equals("4")) 
+		 if (!me.equals("1") && !me.equals("2") && !me.equals("3") && !me.equals("4") && !me.equals("5")) 
 			 incorrecto = true;
 		else 
 			incorrecto = false;
