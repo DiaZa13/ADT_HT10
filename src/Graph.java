@@ -222,12 +222,13 @@ public class Graph {
 			}
 			maximum.add(greater);
 		}
-		
+		int a = 0;
 		long min = Collections.min(maximum);
-		int min1 = (int) min;
-		
+		while(!maximum.get(a).equals(min)) {
+			a++;
+		}
 		if(min != 1000000000)
-			msg = "El centro del grafo es: " + min + " Km";
+			msg = "El centro del grafo es: " + nodes.actualNodes().get(a) + " con excentricidad de: " + min + " Km";
 		else
 			msg = "Actualmente el centro del grafo no existe (es infinito)";
 		return msg;
